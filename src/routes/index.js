@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import Main from '../views/MainView'
-const Stack = createStackNavigator()
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Main from '../views/MainView';
+const Stack = createStackNavigator();
 
 const Routes = () => (
     <NavigationContainer>
@@ -10,6 +10,6 @@ const Routes = () => (
             <Stack.Screen name="Main" component={Main} />
         </Stack.Navigator>
     </NavigationContainer>
-)
+);
 
-export default Routes
+export default Routes;

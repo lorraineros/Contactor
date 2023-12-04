@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { stTropaz } from '../../styles/colors'
+import { StyleSheet } from 'react-native';
+import { stTropaz } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -11,4 +11,4 @@ export default StyleSheet.create({
   title: {
     color: stTropaz
   }
-})
+});

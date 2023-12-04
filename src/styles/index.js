@@ -2,7 +2,7 @@ const base = {
   headings: {
     fontWeight: 'bold'
   }
-}
+};
 
 export const headings = {
   h1: {
@@ -21,4 +21,4 @@ export const headings = {
     ...base.headings,
     fontSize: 16
   }
-}
+};
