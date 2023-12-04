@@ -30,6 +30,7 @@ module.exports = {
   rules: {
     'no-unused-vars': 'off',
     'react/react-in-jsx-scope': 'off',
-    semi: [2, 'always']
+    semi: [2, 'always'],
+    'skipBlankLines': true
   }
 };
