@@ -53,7 +53,6 @@ const setupDirectory = async () => {
 };
 
 export const getAllImages = async () => {
-  // Check if directory exists
   await setupDirectory();
 
   const result = await onException(() => FileSystem.readDirectoryAsync(imageDirectory));
