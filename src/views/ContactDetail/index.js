@@ -1,12 +1,37 @@
-import React from 'react';
+import contacts from '../../resources/data.json';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import ContactModal from '../../components/ContactModal';
 
 const ContactDetail = ({ route }) => {
-  const { name, phoneNumber, photo } = route.params;
+  const { name, phoneNumber, photo, contactName } = route.params;
+  const [selectedContact, setSelectedContact] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const contact = contacts.find(b => b.name.toLowerCase() === name.toLowerCase())
+
+  useEffect(() => {
+    const contact = contacts.find(b => b.name.toLowerCase() === name.toLowerCase())
+    setSelectedContact(contact)
+  }, []);
+
+  
+  
+  const editContact = () => {  
+  }
 
   return (
     <View style={styles.container}>
+      <ContactModal
+        isOpen={isModalOpen}
+        defaultContact={selectedContact}
+        closeModal={() => setIsModalOpen(false)}
+        submitModal={editContact}
+      />
+      <TouchableOpacity onPress={() => setIsModalOpen(true)}>
+        <Text>Edit contact</Text>
+      </TouchableOpacity>
       <Image
         style={styles.image}
         resizeMode='cover'

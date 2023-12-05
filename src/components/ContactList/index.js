@@ -4,7 +4,9 @@ import styles from './styles';
 import { Text, View, TextInput } from 'react-native';
 import Contact from '../Contact';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({
+  contacts
+}) => {
   const [searchFilter, setSearchFilter] = useState('');
 
   const filteredContacts = contacts

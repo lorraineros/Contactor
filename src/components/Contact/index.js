@@ -14,7 +14,7 @@ const Contact = ({
 
   return (
     <TouchableOpacity onPress={() => navigate('ContactDetail', { name, phoneNumber, photo })}>
-      <View style={styles.container}>
+      <View style={ styles.container }>
         <Image
           style={styles.image}
           resizeMode='cover'

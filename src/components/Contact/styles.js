@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { paleCornflowerBlue, stTropaz } from '../../styles/colors';
+import { darkerBlue, paleCornflowerBlue, stTropaz } from '../../styles/colors';
 
 const { width: winWidth, height: winHeight } = Dimensions.get('window');
 
@@ -8,7 +8,7 @@ export default StyleSheet.create({
     width: winWidth - 50,
     paddingLeft: 10,
     borderRadius: 5,
-    borderColor: paleCornflowerBlue,
+    borderColor: darkerBlue,
     borderWidth: 2,
     flexDirection: 'row',
     backgroundColor: '#fff',
