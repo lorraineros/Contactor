@@ -16,9 +16,8 @@ export default StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center'
-
   },
   icon: {
     fontSize: 20
-}
+  }
 });

@@ -10,10 +10,12 @@ const ContactList = ({
   const [searchFilter, setSearchFilter] = useState('');
 
   const filteredContacts = contacts
-    .sort((a, b) => a.name.localeCompare(b.name)) // Sort contacts alphabetically
+    .sort((a, b) => a.name.localeCompare(b.name))
     .filter(contact =>
       contact.name.toLowerCase().includes(searchFilter.toLowerCase())
     );
+
+  console.log(filteredContacts)
 
   return (
     <View style={styles.container}>
@@ -23,7 +25,9 @@ const ContactList = ({
         value={searchFilter}
         onChangeText={text => setSearchFilter(text)}
       />
-      {filteredContacts.length > 0 ? (
+      {contacts.length === 0 ? (
+        <Text style={styles.paragraph}>You don't have any contacts yet</Text>
+      ) : filteredContacts.length > 0 ? (
         filteredContacts.map(c => <Contact key={c.id} {...c} />)
       ) : (
         <Text style={styles.paragraph}>No matching contacts found</Text>

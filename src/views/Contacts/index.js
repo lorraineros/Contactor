@@ -1,17 +1,28 @@
-import contacts from '../../resources/data.json';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import { Entypo } from '@expo/vector-icons';
 import { TouchableOpacity, Text, View } from 'react-native';
 import ContactList from '../../components/ContactList';
 import ContactModal from '../../components/ContactModal';
+import * as fileService from '../../services/fileService';
 
 const Contacts = ({ navigation: {navigate} }) => {
+  const [contacts, setContacts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contactName, setContactName] = useState('')
 
-  const addContact = () => {
-    console.log('.');
+  const addContact = async (name, phoneNumber, photo) => {
+    // if (thumbnailPhoto) {
+    //   image = null
+    // };
+    const contact = {
+      name,
+      phoneNumber,
+      photo
+    };
+
+    const newContact = await fileService.addContact(contact);
+    setContacts([...contacts, newContact]);
+    setIsModalOpen(false);
   } 
   
   return (
@@ -27,7 +38,7 @@ const Contacts = ({ navigation: {navigate} }) => {
       <Entypo style={styles.icon} name="plus" />
         <Text style={styles.paragraph}>Add new contact</Text>
       </TouchableOpacity>
-      <ContactList contacts={contacts} contactName={contactName}/>
+      <ContactList contacts={contacts}/>
     </View>
   );
 };

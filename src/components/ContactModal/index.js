@@ -9,7 +9,6 @@ const ContactModal = ({
   submitModal,
   closeModal
 }) => {
-  console.log(defaultContact);
   const [name, setName] = useState(defaultContact?.name || '')
   const [phoneNumber, setNumber] = useState(defaultContact?.phoneNumber || '')
   const [photo, setPhoto] = useState(defaultContact?.photo || '')

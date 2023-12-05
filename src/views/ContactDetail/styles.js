@@ -26,6 +26,18 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: stTropaz,
   },
+  text: {
+    padding: 15,
+    fontSize: 20,
+    color: stTropaz
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icon: {
+    fontSize: 20
+  },
   image: {
     borderRadius: 75,
     borderColor: paleCornflowerBlue,
