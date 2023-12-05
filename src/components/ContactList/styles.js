@@ -6,9 +6,11 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'start'
   },
-  title: {
+  paragraph: {
+    padding: 50,
+    fontSize: 20,
     color: stTropaz
   }
 });

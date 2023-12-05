@@ -1,14 +1,28 @@
-import { StyleSheet } from 'react-native';
-import { stTropaz } from '../../styles/colors';
+import { Dimensions, StyleSheet } from 'react-native';
+import { paleCornflowerBlue, stTropaz } from '../../styles/colors';
+
+const { width: winWidth, height: winHeight } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    width: winWidth - 50,
+    paddingLeft: 10,
+    borderRadius: 5,
+    borderColor: paleCornflowerBlue,
+    borderWidth: 2,
+    flexDirection: 'row',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'start'
   },
   title: {
+    paddingLeft: 20,
+    fontSize: 34,
+    fontWeight: 'bold',
     color: stTropaz
+  },
+  image: {
+    width: 100,
+    height: 100
   }
 });
