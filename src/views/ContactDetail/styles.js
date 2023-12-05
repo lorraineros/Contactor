@@ -1,3 +1,4 @@
+
 import { StyleSheet } from 'react-native';
 import { paleCornflowerBlue, stTropaz } from '../../styles/colors';
 
@@ -7,19 +8,29 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'start'
+    justifyContent: 'start',
+  },
+  detailsContainer: {
+    marginTop: 20,
+  },
+  detailItem: {
+    marginBottom: 15,
+  },
+  label: {
+    fontSize: 18,
+    color: paleCornflowerBlue,
   },
   paragraph: {
-    paddingTop: 10,
+    paddingTop: 5,
     fontSize: 22,
     fontWeight: 'bold',
-    color: stTropaz
+    color: stTropaz,
   },
   image: {
     borderRadius: 75,
     borderColor: paleCornflowerBlue,
     borderWidth: 3,
     width: 150,
-    height: 150
-  }
+    height: 150,
+  },
 });

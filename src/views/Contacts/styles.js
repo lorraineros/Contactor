@@ -8,7 +8,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  title: {
+  paragraph: {
+    padding: 15,
+    fontSize: 20,
     color: stTropaz
-  }
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center'
+
+  },
+  icon: {
+    fontSize: 20
+}
 });
