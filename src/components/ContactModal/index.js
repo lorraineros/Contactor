@@ -8,27 +8,34 @@ import Modal from '../Modal'
 const ContactModal = ({
   isOpen,
   defaultContact,
-  image,
-  takePhoto,
-  selectPhoto,
   submitModal,
   closeModal
 }) => {
-  const [name, setName] = useState(defaultContact?.name || '')
-  const [phoneNumber, setNumber] = useState(defaultContact?.phoneNumber || '')
-  const [photo, setPhoto] = useState(defaultContact?.photo || '')
+  const [name, setName] = useState(defaultContact?.name || '');
+  const [phoneNumber, setNumber] = useState(defaultContact?.phoneNumber || '');
+  const [photo, setPhoto] = useState(defaultContact?.photo || '');
 
   useEffect(() => {
     if (defaultContact) {
-      setName(defaultContact.name || '')
-      setNumber(defaultContact.phoneNumber || '')
-      setPhoto(defaultContact.photo || '')
+      setName(defaultContact.name || '');
+      setNumber(defaultContact.phoneNumber || '');
+      setPhoto(defaultContact.photo || '');
     } else {
-      setName('')
-      setNumber('')
-      setPhoto('')
+      setName('');
+      setNumber('');
+      setPhoto('');
     }
-  }, [])
+  }, [defaultContact]);
+
+  const handleConfirm = () => {
+    if (defaultContact) {
+      submitModal(name, phoneNumber, photo);
+    } else {
+      submitModal(name, phoneNumber, photo);
+    }
+    closeModal();
+  };
+
 
   return (
     <Modal
@@ -72,7 +79,7 @@ const ContactModal = ({
           <TouchableHighlight style={styles.cancelButton} onPress={closeModal}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.submitButton} onPress={() => submitModal(name, phoneNumber, photo, image)}>
+          <TouchableHighlight style={styles.submitButton} onPress={handleConfirm}>
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableHighlight>
         </View>

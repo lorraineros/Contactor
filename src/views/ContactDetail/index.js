@@ -19,8 +19,17 @@ const ContactDetail = ({ route }) => {
     })();
   }, [name]);
   
-  const editContact = () => {  
-  }
+  const editContact = async (editedName, editedPhoneNumber, editedPhoto) => {
+    await fileService.removeContact(selectedContact.name);
+    const updatedContact = {
+      ...selectedContact,
+      name: editedName,
+      phoneNumber: editedPhoneNumber,
+      photo: editedPhoto
+    };
+    const newContact = await fileService.addContact(updatedContact);
+    setSelectedContact(newContact.file);
+  };
 
   const takePhoto = async () => {
     const photo = await imageService.takePhoto();
