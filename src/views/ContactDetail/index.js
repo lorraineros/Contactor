@@ -90,12 +90,14 @@ const ContactDetail = ({ route }) => {
           <Text style={styles.paragraph}>{selectedContact ? selectedContact.phoneNumber : phoneNumber}</Text>
         </View>
       </View>
+      {selectedContact && selectedContact.phoneNumber && (
       <TouchableOpacity
         style={styles.call}
         onPress={() => makePhoneCall()}>
         <Text style={styles.callPara}>Call</Text>
         <Entypo style={styles.callIcon} name="phone" />
       </TouchableOpacity>
+      )}
     </View>
   );
 };
