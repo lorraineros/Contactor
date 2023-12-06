@@ -46,4 +46,23 @@ export default StyleSheet.create({
     width: 150,
     height: 150,
   },
+  call: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'green',
+    padding: 5,
+    margin: 15,
+    borderRadius: 5,
+    width: 80
+  },
+  callPara: {
+    color: 'white',
+    padding: 5,
+    fontSize: 22,
+    fontWeight: 'bold'
+  },
+  callIcon: {
+    color: 'white',
+    fontSize: 20
+  }
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import { Entypo } from '@expo/vector-icons';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import * as fileService from '../../services/fileService';
 import ContactModal from '../../components/ContactModal';
 
@@ -50,6 +50,14 @@ const ContactDetail = ({ route }) => {
     setImage(newImage);
   }
 
+  const makePhoneCall = () => {
+    const callNumber = selectedContact ? selectedContact.phoneNumber : phoneNumber;
+    if (callNumber) {
+      const number = callNumber.replace(/[^0-9]/g,'');
+      Linking.openURL(`tel:${number}`);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ContactModal
@@ -82,6 +90,12 @@ const ContactDetail = ({ route }) => {
           <Text style={styles.paragraph}>{selectedContact ? selectedContact.phoneNumber : phoneNumber}</Text>
         </View>
       </View>
+      <TouchableOpacity
+        style={styles.call}
+        onPress={() => makePhoneCall()}>
+        <Text style={styles.callPara}>Call</Text>
+        <Entypo style={styles.callIcon} name="phone" />
+      </TouchableOpacity>
     </View>
   );
 };
