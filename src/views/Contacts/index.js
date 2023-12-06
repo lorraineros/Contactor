@@ -10,6 +10,13 @@ const Contacts = ({ navigation: {navigate} }) => {
   const [contacts, setContacts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    (async () => {
+      const contacts = await fileService.getAllContacts();
+      setContacts(contacts);
+    })();
+  }, []);
+
   const addContact = async (name, phoneNumber, photo) => {
     // if (thumbnailPhoto) {
     //   image = null
