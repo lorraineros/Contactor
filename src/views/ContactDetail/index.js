@@ -53,7 +53,7 @@ const ContactDetail = ({ route }) => {
   const makePhoneCall = () => {
     const callNumber = selectedContact ? selectedContact.phoneNumber : phoneNumber;
     if (callNumber) {
-      const number = callNumber.replace(/[^0-9]/g,'');
+      const number = callNumber.replace(/[^0-9+]/g,'');
       Linking.openURL(`tel:${number}`);
     }
   };
