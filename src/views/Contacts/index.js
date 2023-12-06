@@ -50,9 +50,8 @@ const Contacts = ({ navigation: {navigate} }) => {
           return newContact;
         });
 
-        const newContact = await Promise.all(importedContacts);
-        console.log(newContact);
-        setContacts([...contacts, ...newContact]);
+        const newContacts = await Promise.all(importedContacts);
+        setContacts([...contacts, ...newContacts]);
       }
     }
   }  
@@ -65,17 +64,20 @@ const Contacts = ({ navigation: {navigate} }) => {
           closeModal={() => setIsModalOpen(false)}
           submitModal={addContact}
         />
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => setIsModalOpen(true)}>
-          <Entypo style={styles.icon} name="plus" />
-          <Text style={styles.paragraph}>Add new contact</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={() => importContacts()}>
-          <Text style={styles.paragraph}>Import contacts</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={() => setIsModalOpen(true)}>
+            <Entypo style={styles.icon} name="plus" />
+            <Text style={styles.paragraph}>Add new contact</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={() => importContacts()}>
+            <Entypo style={styles.icon} name="login" />
+            <Text style={styles.paragraph}>Import contacts</Text>
+          </TouchableOpacity>
+        </View>
         <ContactList contacts={contacts}/>
       </View>
     </ScrollView>

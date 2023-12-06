@@ -36,7 +36,8 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   icon: {
-    fontSize: 20
+    fontSize: 20,
+    color: stTropaz
   },
   image: {
     borderRadius: 75,

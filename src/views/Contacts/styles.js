@@ -17,7 +17,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   icon: {
-    fontSize: 20
+    fontSize: 20,
+    color: stTropaz
   }
 });
