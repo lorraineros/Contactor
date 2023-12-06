@@ -16,6 +16,7 @@ const Contacts = ({ navigation: {navigate} }) => {
 
   useEffect(() => {
     (async () => {
+      // await fileService.cleanDirectory();
       const contacts = await fileService.getAllContacts();
       setContacts(contacts);
     })();
@@ -76,7 +77,7 @@ const Contacts = ({ navigation: {navigate} }) => {
         const importedContacts = data.map(async (contact) => {
           const name = contact.name;
           const phoneNumber = contact.phoneNumbers ? contact.phoneNumbers[0]?.number : '';
-          const photo = contact.image ? contact.image.uri : null;
+          const photo = contact.image ? contact.image.uri : defaultPhoto;
 
           const newContact = await fileService.addContact({ name, phoneNumber, photo });
           return newContact;
