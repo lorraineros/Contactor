@@ -14,11 +14,12 @@ export default StyleSheet.create({
     color: darkerBlue
   },
   textInput: {
-    padding: 5,
+    paddingLeft: 5,
     marginBottom: 2,
     borderRadius: 5,
     borderColor: paleCornflowerBlue,
-    borderWidth: 2
+    borderWidth: 2,
+    fontSize: 13,
   },
   buttonText: {
     textAlign: 'center',
@@ -33,6 +34,7 @@ export default StyleSheet.create({
   },
   button: {
     padding: 3,
+    marginBottom: 2,
     borderRadius: 5,
     borderColor: paleCornflowerBlue,
     borderWidth: 2

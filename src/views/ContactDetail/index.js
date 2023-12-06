@@ -7,6 +7,7 @@ import ContactModal from '../../components/ContactModal';
 
 const ContactDetail = ({ route }) => {
   const { name, phoneNumber, photo, contactName } = route.params;
+  const [image, setImage] = useState()
   const [selectedContact, setSelectedContact] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,11 +22,33 @@ const ContactDetail = ({ route }) => {
   const editContact = () => {  
   }
 
+  const takePhoto = async () => {
+    const photo = await imageService.takePhoto();
+    if (photo) { 
+      await addImage(photo); 
+    }
+  }
+
+  const selectPhoto = async () => {
+    const photo = await imageService.selectFromCameraRoll();
+    if (photo) {
+      await addImage(photo);
+    }
+  }
+
+  const addImage = async image => {
+    const newImage = await fileService.addImage(image);
+    setImage(newImage);
+  }
+
   return (
     <View style={styles.container}>
       <ContactModal
         isOpen={isModalOpen}
         defaultContact={selectedContact}
+        image={image}
+        takePhoto={() => takePhoto()}
+        selectPhoto={() => selectPhoto()}
         closeModal={() => setIsModalOpen(false)}
         submitModal={editContact}
       />

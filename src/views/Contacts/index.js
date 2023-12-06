@@ -4,12 +4,15 @@ import { Entypo } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import ContactList from '../../components/ContactList';
 import ContactModal from '../../components/ContactModal';
-import * as fileService from '../../services/fileService';
 import * as EContacts from 'expo-contacts';
+import * as fileService from '../../services/fileService';
+import * as imageService from '../../services/imageService';
 
 const Contacts = ({ navigation: {navigate} }) => {
   const [contacts, setContacts] = useState([]);
+  const [image, setImage] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const defaultPhoto = "https://www.iprcenter.gov/image-repository/blank-profile-picture.png/@@images/image.png";
 
   useEffect(() => {
     (async () => {
@@ -18,19 +21,48 @@ const Contacts = ({ navigation: {navigate} }) => {
     })();
   }, []);
 
-  const addContact = async (name, phoneNumber, photo) => {
-    // if (thumbnailPhoto) {
-    //   image = null
-    // };
+  const addContact = async (name, phoneNumber, photo, image) => {
+    setImage(null);
+    if (photo && image) {
+      image = null;
+    };
+    if (!photo && !image) {
+      photo = defaultPhoto;
+    };
+
     const contact = {
       name,
       phoneNumber,
-      photo
+      photo,
+      image
     };
 
     const newContact = await fileService.addContact(contact);
     setContacts([...contacts, newContact]);
     setIsModalOpen(false);
+  }
+
+  const takePhoto = async () => {
+    const photo = await imageService.takePhoto();
+    if (photo) { 
+      await addImage(photo); 
+    }
+  }
+
+  const selectPhoto = async () => {
+    const photo = await imageService.selectFromCameraRoll();
+    if (photo) {
+      await addImage(photo);
+    }
+  }
+
+  const addImage = async image => {
+    const newImage = await fileService.addImage(image);
+    setImage(newImage);
+  }
+
+  const onAddContact = () => {
+    
   }
   
   const importContacts = async () => { 
@@ -61,6 +93,10 @@ const Contacts = ({ navigation: {navigate} }) => {
       <View style={styles.container}>
         <ContactModal
           isOpen={isModalOpen}
+          defaultContact={null}
+          image={image}
+          takePhoto={() => takePhoto()}
+          selectPhoto={() => selectPhoto()}
           closeModal={() => setIsModalOpen(false)}
           submitModal={addContact}
         />
