@@ -19,4 +19,11 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
   </NativeModal>
 )
 
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  children: PropTypes.node
+}
+
 export default Modal

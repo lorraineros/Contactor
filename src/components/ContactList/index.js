@@ -36,5 +36,18 @@ const ContactList = ({
   );
 };
 
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    file: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      phoneNumber: PropTypes.string.isRequired,
+      photo: PropTypes.string,
+      image: PropTypes.object
+    }),
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string
+  })).isRequired
+}
+
 export default ContactList;
 
