@@ -5,6 +5,7 @@ import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import ContactList from '../../components/ContactList';
 import ContactModal from '../../components/ContactModal';
 import * as EContacts from 'expo-contacts';
+import * as contactServive from '../../services/contactService';
 import * as fileService from '../../services/fileService';
 import * as imageService from '../../services/imageService';
 
@@ -61,31 +62,22 @@ const Contacts = ({ navigation: {navigate} }) => {
     const newImage = await fileService.addImage(image);
     setImage(newImage);
   }
-
-  const onAddContact = () => {
-    
-  }
   
   const importContacts = async () => { 
-    const { status } = await EContacts.requestPermissionsAsync();
-    if (status === 'granted') {
-      const { data } = await EContacts.getContactsAsync({
-        fields: [EContacts.Fields.Name, EContacts.Fields.PhoneNumbers, EContacts.Fields.Image],
+    const data = await contactServive.getContacts();
+
+    if (data.length > 0) {
+      const importedContacts = data.map(async (contact) => {
+        const name = contact.name;
+        const phoneNumber = contact.phoneNumbers ? contact.phoneNumbers[0]?.number : '';
+        const photo = contact.image ? contact.image.uri : defaultPhoto;
+
+        const newContact = await fileService.addContact({ name, phoneNumber, photo });
+        return newContact;
       });
 
-      if (data.length > 0) {
-        const importedContacts = data.map(async (contact) => {
-          const name = contact.name;
-          const phoneNumber = contact.phoneNumbers ? contact.phoneNumbers[0]?.number : '';
-          const photo = contact.image ? contact.image.uri : defaultPhoto;
-
-          const newContact = await fileService.addContact({ name, phoneNumber, photo });
-          return newContact;
-        });
-
-        const newContacts = await Promise.all(importedContacts);
-        setContacts([...contacts, ...newContacts]);
-      }
+      const newContacts = await Promise.all(importedContacts);
+      setContacts([...contacts, ...newContacts]);
     }
   }  
   

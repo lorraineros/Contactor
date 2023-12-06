@@ -15,8 +15,6 @@ const ContactList = ({
       contact.file.name.toLowerCase().includes(searchFilter.toLowerCase())
     );
 
-  console.log(filteredContacts)
-
   return (
     <View style={styles.container}>
       <TextInput

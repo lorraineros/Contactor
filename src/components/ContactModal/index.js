@@ -19,7 +19,6 @@ const ContactModal = ({
   const [photo, setPhoto] = useState(defaultContact?.photo || '')
 
   useEffect(() => {
-    console.log("default: ", defaultContact)
     if (defaultContact) {
       setName(defaultContact.name || '')
       setNumber(defaultContact.phoneNumber || '')
