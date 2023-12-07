@@ -8,6 +8,9 @@ import Modal from '../Modal'
 const ContactModal = ({
   isOpen,
   defaultContact,
+  image,
+  takePhoto,
+  selectPhoto,
   submitModal,
   closeModal
 }) => {
@@ -26,16 +29,6 @@ const ContactModal = ({
       setPhoto('');
     }
   }, [defaultContact]);
-
-  const handleConfirm = () => {
-    if (defaultContact) {
-      submitModal(name, phoneNumber, photo);
-    } else {
-      submitModal(name, phoneNumber, photo);
-    }
-    closeModal();
-  };
-
 
   return (
     <Modal
@@ -79,7 +72,7 @@ const ContactModal = ({
           <TouchableHighlight style={styles.cancelButton} onPress={closeModal}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.submitButton} onPress={handleConfirm}>
+          <TouchableHighlight style={styles.submitButton} onPress={() => submitModal(name, phoneNumber, photo, image)}>
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableHighlight>
         </View>

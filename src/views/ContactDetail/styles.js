@@ -52,7 +52,7 @@ export default StyleSheet.create({
     backgroundColor: 'green',
     padding: 5,
     margin: 15,
-    borderRadius: 5,
+    borderRadius: 15,
     width: 80
   },
   callPara: {

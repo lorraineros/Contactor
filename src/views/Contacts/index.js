@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import styles from './styles';
 import { Entypo } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
 import ContactList from '../../components/ContactList';
 import ContactModal from '../../components/ContactModal';
-import * as EContacts from 'expo-contacts';
 import * as contactServive from '../../services/contactService';
 import * as fileService from '../../services/fileService';
 import * as imageService from '../../services/imageService';
@@ -14,6 +14,7 @@ const Contacts = ({ navigation: {navigate} }) => {
   const [image, setImage] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultPhoto = "https://www.iprcenter.gov/image-repository/blank-profile-picture.png/@@images/image.png";
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     (async () => {
@@ -21,7 +22,7 @@ const Contacts = ({ navigation: {navigate} }) => {
       const contacts = await fileService.getAllContacts();
       setContacts(contacts);
     })();
-  }, []);
+  }, [isFocused]);
 
   const addContact = async (name, phoneNumber, photo, image) => {
     setImage(null);

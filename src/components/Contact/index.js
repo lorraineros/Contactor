@@ -16,15 +16,15 @@ const Contact = ({
     <TouchableOpacity onPress={() => navigate('ContactDetail', { name, phoneNumber, photo })}>
       <View style={ styles.container }>
       {
-          image
-            ? <Image
-              style={styles.image}
-              resizeMode='cover'
-              source={{ uri: `data:image/jpeg;base64,${image.file}` }}/>
-            : <Image
-              style={styles.image}
-              resizeMode='cover'
-              source={{ uri: `${photo}` }}/>
+        image
+          ? <Image
+            style={styles.image}
+            resizeMode='cover'
+            source={{ uri: `data:image/jpeg;base64,${image.file}` }}/>
+          : <Image
+            style={styles.image}
+            resizeMode='cover'
+            source={{ uri: `${photo}` }}/>
         }
         <Text style={styles.title}>{ name }</Text>
       </View>

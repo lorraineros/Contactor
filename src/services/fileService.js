@@ -36,7 +36,7 @@ export const addContact = async contact => {
   await onException(() => writeAsStringFile(`${contactDirectory}/${fileName}`, JSON.stringify(contact)));
 
   return {
-    name: contact.name,
+    name: fileName,
     type: 'contact',
     file: await loadContact(fileName)
   };
@@ -54,13 +54,20 @@ export const addImage = async imageLocation => {
   };
 }
 
-export const removeContact = async name => {
-  return await onException(() => FileSystem.deleteAsync(`${contactDirectory}/${name}`, { idempotent: true }));
-};
+export const editContact = async (fileName, editedContact) => {
+  const contact = await loadContact(fileName);
+  contact.name = editedContact.name;
+  contact.phoneNumber = editedContact.phoneNumber;
+  contact.photo = editedContact.photo;
+  contact.image = editedContact.image;
+  await onException(() => writeAsStringFile(`${contactDirectory}/${fileName}`, JSON.stringify(contact)));
 
-export const removeImage = async name => {
-  return await onException(() => FileSystem.deleteAsync(`${imageDirectory}/${name}`, { idempotent: true }));
-}
+  return {
+    name: fileName,
+    type: 'contact',
+    file: await loadContact(fileName)
+  };
+};
 
 export const loadContact = async fileName => {
   return await JSON.parse(await onException(() => FileSystem.readAsStringAsync(`${contactDirectory}/${fileName}`)));
